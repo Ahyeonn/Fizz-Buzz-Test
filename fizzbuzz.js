@@ -2,22 +2,27 @@ const FIZZ = 'fizz'
 const BUZZ = 'buzz'
 const FIZZBUZZ = 'fizzbuzz'
 
+const forFizz = 3
+const forBuzz = 5
+
 /** 
  * Returns true when n is divisible by 3 
  * @param {Number} n
  * @returns {Boolean} fizziness 
  * */
-function isFizzy(n) {
-  return n % 3 === 0
+function isFizzy(n, forFizz) {
+  return n % forFizz === 0
 }
+
+console.log(isFizzy(3, 3))
 
 /**
  * Returns true when n is divisible by 5
  * @param {Number} n 
  * @returns {Boolean} buzziness
  */
-function isBuzzy(n) {
-  return n % 5 === 0
+function isBuzzy(n, forBuzz) {
+  return n % forBuzz === 0
 }
 
 /**
@@ -25,10 +30,10 @@ function isBuzzy(n) {
  * @param {Number} n
  * @returns {String} '', 'FIZZ', 'BUZZ', or 'FIZZBUZZ'
  */
-function fizzyBuzzy(n) {
+function fizzyBuzzy(n, forFizz, forBuzz) {
   let result = ''
-  if (isFizzy(n)) { result += FIZZ }
-  if (isBuzzy(n)) { result += BUZZ }
+  if (isFizzy(n, forFizz)) { result += FIZZ }
+  if (isBuzzy(n, forBuzz)) { result += BUZZ }
   return result
 }
 
@@ -37,10 +42,10 @@ function fizzyBuzzy(n) {
  * @param {Number} count 
  * @returns {Object} with properties count, fizz, buzz, and fizzbuzz
  */
-function fizzBuzz(count) {
+function fizzBuzz(count, forFizz, forBuzz) {
   let result = { count, fizz: 0, buzz: 0, fizzBuzz: 0 }
   for (let i = 1; i <= count; i += 1) {
-    const str = fizzyBuzzy(i)
+    const str = fizzyBuzzy(i, forFizz, forBuzz)
     switch(str) {
       case FIZZ: 
         result.fizz += 1
@@ -56,6 +61,7 @@ function fizzBuzz(count) {
   return result
 }
 
+
 module.exports.isFizzy = isFizzy
 module.exports.isBuzzy = isBuzzy
 module.exports.fizzyBuzzy = fizzyBuzzy
@@ -63,4 +69,6 @@ module.exports.fizzBuzz = fizzBuzz
 module.exports.FIZZ = FIZZ
 module.exports.BUZZ = BUZZ
 module.exports.FIZZBUZZ = FIZZBUZZ
+module.exports.forFizz = forFizz
+module.exports.forBuzz = forBuzz
 
